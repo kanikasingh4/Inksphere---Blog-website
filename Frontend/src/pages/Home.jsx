@@ -42,7 +42,7 @@ const Home= () => {
 
         {/* Call-to-Action Button */}
         <motion.a
-          href="/courses"
+          href="/course"
           className="bg-yellow-400 text-gray-900 font-semibold px-6 py-3 rounded-full shadow-lg hover:bg-yellow-500 transition duration-300"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}

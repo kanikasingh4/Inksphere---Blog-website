@@ -1,39 +1,82 @@
+// src/components/Blog.jsx
 import React from "react";
 import { motion } from "framer-motion";
 
-const blogs = [
+const blogPosts = [
   {
-    title: "Top 5 Programming Languages in 2024",
-    description: "Stay ahead with these in-demand languages.",
-    link: "#",
+    id: 1,
+    title: "Understanding React Fundamentals",
+    summary:
+      "A beginner-friendly guide to the core concepts of React, including components, state, and props.",
+    imageUrl: "https://via.placeholder.com/600x300",
+    author: "author",
+    date: "month XX,20XX",
   },
   {
-    title: "How to Ace Your Tech Interview",
-    description: "Tips and strategies for landing your dream job.",
-    link: "#",
+    id: 2,
+    title: "Top 10 JavaScript Libraries for 2024",
+    summary:
+      "Explore the most popular JavaScript libraries and frameworks that are shaping the future of web development.",
+    imageUrl: "https://via.placeholder.com/600x300",
+    author: "author",
+    date: "month XX,20XX",
+  },
+  {
+    id: 3,
+    title: "Mastering Asynchronous JavaScript",
+    summary:
+      "Learn how to handle asynchronous operations in JavaScript using promises, async/await, and more.",
+    imageUrl: "https://via.placeholder.com/600x300",
+    author: "author",
+    date: "month XX,20XX",
   },
 ];
 
 const Blog = () => {
   return (
-    <section className="py-12">
-      <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-bold mb-8 text-center">Blog</h2>
-        <div className="grid md:grid-cols-2 gap-8">
-          {blogs.map((blog, index) => (
+    <section className="min-h-screen bg-gray-100 dark:bg-gray-900 py-12 px-6 md:px-20">
+      <div className="max-w-6xl mx-auto">
+        {/* Title */}
+        <motion.h1
+          className="text-4xl md:text-5xl font-bold text-center mb-12 text-gray-800 dark:text-gray-200"
+          initial={{ opacity: 0, y: -50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7 }}
+        >
+          Latest in Tech & IT
+        </motion.h1>
+
+        {/* Blog Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {blogPosts.map((post) => (
             <motion.div
-              key={index}
-              className="bg-white p-6 rounded-lg shadow-lg"
-              whileHover={{ scale: 1.05 }}
+              key={post.id}
+              className="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300"
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: post.id * 0.2, duration: 0.5 }}
             >
-              <h3 className="text-xl font-semibold mb-2">{blog.title}</h3>
-              <p className="text-gray-600 mb-4">{blog.description}</p>
-              <a
-                href={blog.link}
-                className="text-blue-500 hover:underline"
-              >
-                Read More
-              </a>
+              {/* Image */}
+              <img
+                src={post.imageUrl}
+                alt={post.title}
+                className="w-full h-48 object-cover"
+              />
+              <div className="p-6">
+                {/* Title */}
+                <h2 className="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-3">
+                  {post.title}
+                </h2>
+                {/* Summary */}
+                <p className="text-gray-600 dark:text-gray-400 mb-4">
+                  {post.summary}
+                </p>
+                {/* Author and Date */}
+                <div className="flex justify-between items-center text-sm text-gray-500 dark:text-gray-400">
+                  <span>By {post.author}</span>
+                  <span>{post.date}</span>
+                </div>
+              </div>
             </motion.div>
           ))}
         </div>
@@ -43,3 +86,4 @@ const Blog = () => {
 };
 
 export default Blog;
+
