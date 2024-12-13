@@ -1,62 +1,138 @@
-import { Button,Navbar, TextInput } from 'flowbite-react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { AiOutlineSearch } from 'react-icons/ai';
-import { FaMoon, FaSun } from 'react-icons/fa';
-
-export default function Header() {
-  const path = useLocation().pathname;
+import React, { useState, useEffect } from "react";
+import { Link } from 'react-router-dom';
+import { MdDarkMode } from "react-icons/md";
+import { MdLightMode } from "react-icons/md";
  
+const Header = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [darkMode, setDarkMode] = useState(false);
+  const isAuthenticated = true; // Change this based on authentication status
 
+  // Load the user's theme preference from local storage
+  useEffect(() => {
+    const theme = localStorage.getItem("theme");
+    if (theme === "dark") {
+      setDarkMode(true);
+      document.documentElement.classList.add("dark");
+    }
+  }, []);
+
+  // Toggle dark mode and save preference to local storage
+  const toggleDarkMode = () => {
+    setDarkMode(!darkMode);
+    if (!darkMode) {
+      document.documentElement.classList.add("dark");
+      localStorage.setItem("theme", "dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+      localStorage.setItem("theme", "light");
+    }
+  };
 
   return (
-    <Navbar className='border-b-2'>
-      <Link
+    <nav className="bg-white dark:bg-gray-900 shadow-md">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between items-center h-16">
+          {/* Logo */}
+          <Link
         to='/'
         className='self-center whitespace-nowrap text-sm sm:text-xl font-semibold dark:text-white'
       >
         <span className='px-2 py-1 bg-gradient-to-r from-teal-800 via-teal-500 to-teal-300 rounded-full text-white'>
-          INKSPHERE
+          INK
         </span>
-        
+        <span>SPHERE</span>
       </Link>
-      <form >
-        <TextInput
-          type='text'
-          placeholder='Search...'
-          rightIcon={AiOutlineSearch}
-          className='hidden lg:inline'
-        />
-      </form>
-      <Button className='w-12 h-10 lg:hidden' color='gray' pill>
-        <AiOutlineSearch />
-      </Button>
-      <div className='flex gap-2 md:order-2'>
-        <Button
-          className='w-12 h-10 hidden sm:inline'
-          color='gray'
-          pill
-        >
-          <FaMoon></FaMoon>
-        </Button>
-          <Link to='/sign-in'>
-            <Button gradientDuoTone='greenToBlue' >
-              Sign In
-            </Button>
-          </Link>
-        
-        <Navbar.Toggle />
+
+          {/* Menu for Desktop */}
+          <div className="hidden md:flex items-center space-x-6 font-semibold text-lg">
+            <a href="/" className="text-gray-600 dark:text-gray-300 hover:text-teal-600 dark:hover:text-teal-400">
+              Home
+            </a>
+            <a href="/course" className="text-gray-600 dark:text-gray-300  hover:text-teal-500 dark:hover:text-teal-400">
+              Courses
+            </a>
+            <a href="/about" className="text-gray-600 dark:text-gray-300  hover:text-teal-500 dark:hover:text-teal-400">
+              About
+            </a>
+            <a href="/blog" className="text-gray-600 dark:text-gray-300  hover:text-teal-500 dark:hover:text-teal-400">
+              Blog
+            </a>
+            {isAuthenticated ? (
+              <a href="/dashboard" className="text-gray-600 dark:text-gray-300  hover:text-teal-500 dark:hover:text-teal-400">
+                Dashboard
+              </a>
+            ) : (
+              <a href="/login" className="text-gray-600 dark:text-gray-300  hover:text-teal-500 dark:hover:text-teal-400">
+                Login / Signup
+              </a>
+            )}
+            <button
+              onClick={toggleDarkMode}
+              className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 focus:outline-none"
+            >
+              {darkMode ? (
+                <span><MdLightMode /></span>
+              ) : (
+                <span><MdDarkMode /></span>
+              )}
+            </button>
+          </div>
+
+          {/* Mobile Menu Button */}
+          <div className="md:hidden">
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 focus:outline-none"
+            >
+              {isOpen ? (
+                <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              ) : (
+                <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+              )}
+            </button>
+          </div>
+        </div>
       </div>
-      <Navbar.Collapse>
-        <Navbar.Link active={path === '/'} as={'div'}>
-          <Link to='/'>Home</Link>
-        </Navbar.Link>
-        <Navbar.Link active={path === '/about'} as={'div'}>
-          <Link to='/about'>About</Link>
-        </Navbar.Link>
-        <Navbar.Link active={path === '/projects'} as={'div'}>
-          <Link to='/projects'>Projects</Link>
-        </Navbar.Link>
-      </Navbar.Collapse>
-    </Navbar>
+
+      {/* Mobile Menu */}
+      {isOpen && (
+        <div className="md:hidden">
+          <a href="/" className="block px-4 py-2 text-gray-600 dark:text-gray-300 hover:text-teal-500 dark:hover:text-teal-400">
+            Home
+          </a>
+          <a href="/course" className="block px-4 py-2 text-gray-600 dark:text-gray-300 hover:text-teal-500 dark:hover:text-teal-400">
+            Courses
+          </a>
+          <a href="/about" className="block px-4 py-2 text-gray-600 dark:text-gray-300 hover:text-teal-500 dark:hover:text-teal-400">
+            About
+          </a>
+          <a href="/blog" className="block px-4 py-2 text-gray-600 dark:text-gray-300  hover:text-teal-500 dark:hover:text-teal-400">
+            Blog
+          </a>
+          {isAuthenticated ? (
+            <a href="/dashboard" className="block px-4 py-2 text-gray-600 dark:text-gray-300  hover:text-teal-500 dark:hover:text-teal-400">
+              Dashboard
+            </a>
+          ) : (
+            <a href="/login" className="block px-4 py-2 text-gray-600 dark:text-gray-300  hover:text-teal-500 dark:hover:text-teal-400">
+              Login / Signup
+            </a>
+          )}
+          <button
+            onClick={toggleDarkMode}
+            className="block w-full text-left px-4 py-2 text-gray-600 dark:text-gray-300 hover:text-teal-500 dark:hover:text-teal-400 focus:outline-none"
+          >
+            {darkMode ? <MdLightMode /> : <MdDarkMode />}
+          </button>
+        </div>
+      )}
+    </nav>
   );
-}
+};
+
+export default Header;

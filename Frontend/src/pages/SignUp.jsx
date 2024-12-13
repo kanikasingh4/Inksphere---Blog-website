@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
-import { FcGoogle } from 'react-icons/fc';
+import React, { useState } from "react";
+import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
-import signupimge from "../assests/sign_up.webp"
+import DarkModeToggle from "../components/DarkModeToggle";
 
 const Signup = () => {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    password: '',
+    name: "",
+    email: "",
+    password: "",
     agree: false,
   });
 
@@ -15,7 +15,7 @@ const Signup = () => {
     const { name, value, type, checked } = e.target;
     setFormData({
       ...formData,
-      [name]: type === 'checkbox' ? checked : value,
+      [name]: type === "checkbox" ? checked : value,
     });
   };
 
@@ -25,62 +25,71 @@ const Signup = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-blue-950 p-4">
-      <div className="bg-transparent  flex max-w-4xl w-full">
-        {/* Illustration Section */}
-        <div className="hidden md:flex items-center justify-center w-1/2  bg-transparent">
-          <img
-            src={signupimge}
-            alt="Sign up illustration"
-            className=' bg-transparent w-full h-5/6'
-          />
-        </div>
-
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-t from-teal-700 via-teal-300 to-teal-50    p-4">
+      <div className="bg-transparent  flex max-w-4xl  ">
         {/* Form Section */}
-        <div className="w-full md:w-1/2 p-8 shadow-md rounded-md bg-white">
-          <h2 className="text-3xl font-bold text-center text-gray-800 mb-6">
+        <div className="w-full  p-5 shadow-md rounded-lg bg-white  dark:bg-black">
+          <h2 className="text-3xl font-bold text-center text-gray-800 dark:text-white mb-5">
             Sign Up
           </h2>
-          <p className="text-gray-600 mb-6 text-center">
-            Already have an account? <a href="/sign-in" className="text-red-500 hover:underline">Log in</a>
+          <p className="text-gray-600 mb-6 text-center dark:text-white">
+            Already have an account?{" "}
+            <a href="/sign-in" className="text-red-500 hover:underline">
+              Log in
+            </a>
           </p>
 
-          <form onSubmit={handleSubmit} className="space-y-4">
+          <form onSubmit={handleSubmit} className="space-y-4 ">
             <div>
-            <label htmlFor="password" className="block text-gray-700 mb-1">Username</label>
-            <input
-              type="text"
-              name="name"
-              placeholder="Username"
-              className="w-full p-3 border rounded-md"
-              value={formData.name}
-              onChange={handleChange}
-              required
-            />
+              <label
+                htmlFor="password"
+                className="block text-gray-700 mb-1 dark:text-white"
+              >
+                Username
+              </label>
+              <input
+                type="text"
+                name="name"
+                placeholder="Username"
+                className="w-full p-3 border rounded-md"
+                value={formData.name}
+                onChange={handleChange}
+                required
+              />
             </div>
             <div>
-            <label htmlFor="password" className="block text-gray-600 mb-1">Email</label>
-            <input
-              type="email"
-              name="email"
-              placeholder="example@gmail.com"
-              className="w-full p-3 border rounded-md"
-              value={formData.email}
-              onChange={handleChange}
-              required
-            />
+              <label
+                htmlFor="password"
+                className="block text-gray-600 mb-1 dark:text-white"
+              >
+                Email
+              </label>
+              <input
+                type="email"
+                name="email"
+                placeholder="example@gmail.com"
+                className="w-full p-3 border rounded-md"
+                value={formData.email}
+                onChange={handleChange}
+                required
+              />
             </div>
             <div>
-            <label htmlFor="password" className="block text-gray-600 mb-1">Password</label>
-            <input
-              type="password"
-              name="password"
-              placeholder="Enter password"
-              className="w-full p-3 border rounded-md"
-              value={formData.password}
-              onChange={handleChange}
-              required
-            />
+              <label
+                htmlFor="password"
+                className="block text-gray-600 mb-1 dark:text-white"
+              >
+                Password
+              </label>
+              <input
+                type="password"
+                name="password"
+                placeholder="Enter password"
+                className="w-full p-3 border rounded-md"
+                value={formData.password}
+                onChange={handleChange}
+                required
+              />
             </div>
             <div className="flex items-center">
               <input
@@ -92,11 +101,11 @@ const Signup = () => {
                 onChange={handleChange}
               />
               <label htmlFor="agree" className="text-sm">
-                I agree to the{' '}
+                I agree to the{" "}
                 <a href="#" className="text-red-500 hover:underline">
                   Platforms Terms
-                </a>{' '}
-                of Service and{' '}
+                </a>{" "}
+                of Service and{" "}
                 <a href="#" className="text-red-500 hover:underline">
                   Privacy Policy
                 </a>
@@ -105,7 +114,7 @@ const Signup = () => {
 
             <button
               type="submit"
-              className="w-full bg-blue-900 text-white py-3 rounded-md hover:bg-blue-800 transition"
+              className="w-full bg-red-500 text-white py-3 rounded-md hover:bg-red-600 transition"
             >
               Create account
             </button>
@@ -118,12 +127,12 @@ const Signup = () => {
           </div>
 
           <div className="flex justify-center gap-4">
-            <button className="flex items-center gap-2 px-4 py-2 border rounded-md hover:bg-gray-100">
+            <button className="flex items-center gap-1 px-2 py-1 border rounded-md hover:bg-gray-100">
               <FcGoogle size={30} />
               Sign up with Google
             </button>
-            <button className="flex items-center gap-2 px-4 py-2 border rounded-md hover:bg-gray-100">
-              <FaGithub size={30} className="text-black" />
+            <button className="flex items-center gap-1 px-2 py-1 border rounded-md hover:bg-gray-100">
+              <FaGithub size={30} className="text-black dark:text-white" />
               Sign up with Github
             </button>
           </div>
