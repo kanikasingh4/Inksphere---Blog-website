@@ -12,8 +12,9 @@ import Header from './components/Header'
 const App = () => {
   return (
     <BrowserRouter>
-    <Header></Header>
+    {/* <Header></Header> */}
     <Routes>
+    
       <Route path='/' element={<Home/>}/>
       <Route path='/about' element={<About/>}/>
       <Route path='/dashboard' element={<Dashboard/>}/>
@@ -21,6 +22,7 @@ const App = () => {
       <Route path='/sign-in' element={<Signin/>}/>
       <Route path='/sign-up' element={<SignUp/>}/>
     </Routes>
+
     </BrowserRouter>
   )
 }
