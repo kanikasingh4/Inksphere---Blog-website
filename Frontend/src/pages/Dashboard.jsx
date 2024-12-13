@@ -1,139 +1,128 @@
+// src/components/Dashboard.jsx
 import React from "react";
 import { motion } from "framer-motion";
+import { FaBook, FaCalendarAlt, FaBell, FaLink } from "react-icons/fa";
 
-const enrolledCourses = [
-  {
-    id: 1,
-    title: "Web Development Bootcamp",
-    progress: 75,
-    certificateLink: "#",
-  },
-  {
-    id: 2,
-    title: "Data Science with Python",
-    progress: 45,
-    certificateLink: "#",
-  },
-  {
-    id: 3,
-    title: "React.js Essentials",
-    progress: 90,
-    certificateLink: "#",
-  },
+const courses = [
+  { title: "JavaScript Fundamentals", progress: 75 },
+  { title: "React Advanced", progress: 50 },
+  { title: "Data Structures & Algorithms", progress: 90 },
 ];
 
-const userProfile = {
-  name: "User",
-  email: "user@example.com",
-  avatar: "https://i.pravatar.cc/150?img=3",
-};
+const upcomingClasses = [
+  { subject: "React State Management", date: "Dec 20, 2024", time: "10:00 AM" },
+  { subject: "Async JavaScript", date: "Dec 22, 2024", time: "1:00 PM" },
+];
+
+const notifications = [
+  "You have a new assignment due on Dec 18.",
+  "React Advanced course updated with new modules.",
+  "Join the live Q&A session on Dec 19.",
+];
+
+const quickLinks = [
+  { name: "Course Library", icon: <FaBook />, href: "#" },
+  { name: "Schedule", icon: <FaCalendarAlt />, href: "#" },
+  { name: "Notifications", icon: <FaBell />, href: "#" },
+  { name: "Resources", icon: <FaLink />, href: "#" },
+];
 
 const Dashboard = () => {
   return (
-    <div className="min-h-screen bg-gray-100">
-      {/* Header */}
-      <header className="bg-teal-600 text-white py-4">
-        <div className="container mx-auto flex items-center justify-between px-4">
-          <h1 className="text-3xl font-bold">Dashboard</h1>
-          <div className="flex items-center">
-            <img
-              src={userProfile.avatar}
-              alt="User Avatar"
-              className="w-10 h-10 rounded-full mr-2"
-            />
-            <span className="font-medium">{userProfile.name}</span>
-          </div>
-        </div>
-      </header>
-
-      {/* Main Content */}
-      <div className="container mx-auto px-4 py-8">
-        <motion.section
-          className="bg-white p-6 rounded-lg shadow-lg mb-8"
-          initial={{ opacity: 0, y: 20 }}
+    <section className="min-h-screen bg-gray-100 dark:bg-gray-900 p-8">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-8">
+        
+        {/* Course Progress */}
+        <motion.div
+          className="lg:col-span-2 bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg"
+          initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.7 }}
         >
-          <h2 className="text-2xl font-bold mb-4">Enrolled Courses</h2>
-          {enrolledCourses.map((course) => (
-            <div
-              key={course.id}
-              className="mb-6 border-b pb-4 last:border-b-0"
-            >
-              <h3 className="text-xl font-semibold mb-2">{course.title}</h3>
-              <div className="w-full bg-gray-200 rounded-full h-4">
+          <h2 className="text-2xl font-bold mb-4 text-gray-800 dark:text-gray-200">
+            📚 Your Courses
+          </h2>
+          {courses.map((course, index) => (
+            <div key={index} className="mb-4">
+              <h3 className="text-lg font-semibold text-gray-700 dark:text-gray-300">{course.title}</h3>
+              <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-3 mt-2">
                 <motion.div
-                  className="bg-blue-400 h-4 rounded-full"
+                  className="bg-blue-500 h-3 rounded-full"
                   style={{ width: `${course.progress}%` }}
                   initial={{ width: 0 }}
                   animate={{ width: `${course.progress}%` }}
                   transition={{ duration: 1 }}
-                ></motion.div>
+                />
               </div>
-              <p className="text-sm mt-2">{course.progress}% Complete</p>
-              {course.progress === 100 && (
-                <a
-                  href={course.certificateLink}
-                  className="inline-block mt-3 bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600 transition"
-                >
-                  Download Certificate
-                </a>
-              )}
             </div>
           ))}
-        </motion.section>
+        </motion.div>
 
-        {/* Progress Tracking */}
-        <motion.section
-          className="bg-white p-6 rounded-lg shadow-lg mb-8"
+        {/* Upcoming Classes */}
+        <motion.div
+          className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg"
+          initial={{ opacity: 0, x: 20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.7 }}
+        >
+          <h2 className="text-2xl font-bold mb-4 text-gray-800 dark:text-gray-200">
+            🗓 Upcoming Classes
+          </h2>
+          <ul className="space-y-4">
+            {upcomingClasses.map((cls, index) => (
+              <li key={index} className="bg-gray-100 dark:bg-gray-700 p-4 rounded-lg">
+                <p className="font-semibold text-gray-700 dark:text-gray-300">{cls.subject}</p>
+                <p className="text-sm text-gray-500 dark:text-gray-400">{cls.date} at {cls.time}</p>
+              </li>
+            ))}
+          </ul>
+        </motion.div>
+
+        {/* Notifications */}
+        <motion.div
+          className="lg:col-span-2 bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3, duration: 0.5 }}
+          transition={{ duration: 0.7 }}
         >
-          <h2 className="text-2xl font-bold mb-4">Progress Tracking</h2>
-          <p className="text-gray-700 mb-4">
-            Keep track of your learning progress and complete your courses to
-            earn certificates.
-          </p>
-          <motion.div
-            className="bg-blue-100 py-3 px-4 rounded-lg"
-            initial={{ scale: 0.8 }}
-            animate={{ scale: 1 }}
-            transition={{ type: "spring", stiffness: 100 }}
-          >
-            <p className="text-blue-700 font-semibold">
-              You are making great progress! Keep it up. 🚀
-            </p>
-          </motion.div>
-        </motion.section>
+          <h2 className="text-2xl font-bold mb-4 text-gray-800 dark:text-gray-200">
+            🔔 Notifications
+          </h2>
+          <ul className="space-y-4">
+            {notifications.map((note, index) => (
+              <li key={index} className="bg-gray-100 dark:bg-gray-700 p-4 rounded-lg">
+                {note}
+              </li>
+            ))}
+          </ul>
+        </motion.div>
 
-        {/* Profile Management */}
-        <motion.section
-          className="bg-white p-6 rounded-lg shadow-lg"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5, duration: 0.5 }}
+        {/* Quick Links */}
+        <motion.div
+          className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg"
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.7 }}
         >
-          <h2 className="text-2xl font-bold mb-4">Profile Management</h2>
-          <div className="flex items-center mb-4">
-            <img
-              src={userProfile.avatar}
-              alt="Profile"
-              className="w-20 h-20 rounded-full mr-4"
-            />
-            <div>
-              <p className="text-lg font-medium">{userProfile.name}</p>
-              <p className="text-gray-600">{userProfile.email}</p>
-            </div>
+          <h2 className="text-2xl font-bold mb-4 text-gray-800 dark:text-gray-200">
+            ⚡ Quick Links
+          </h2>
+          <div className="grid grid-cols-2 gap-4">
+            {quickLinks.map((link, index) => (
+              <a
+                key={index}
+                href={link.href}
+                className="flex items-center bg-blue-500 text-white p-4 rounded-lg shadow-lg hover:bg-blue-600 transition-transform transform hover:scale-105"
+              >
+                <span className="mr-2 text-2xl">{link.icon}</span>
+                <span>{link.name}</span>
+              </a>
+            ))}
           </div>
-          <button className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition">
-            Edit Profile
-          </button>
-        </motion.section>
+        </motion.div>
       </div>
-    </div>
+    </section>
   );
 };
 
 export default Dashboard;
-
