@@ -7,7 +7,6 @@ import Blog from './pages/blog'
 import Signin from './pages/Signin'
 import SignUp from './pages/SignUp'
 import Header from './components/Header'
-// import CourseCatalog from "./components/CourseCatalog";
 import CourseDetails from "./components/CourseDetails";
 import Courses from './pages/courses'
 

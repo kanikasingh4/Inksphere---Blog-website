@@ -1,43 +1,35 @@
 import React, { useState } from "react";
+import { motion } from "framer-motion";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    if (!email || !password) {
-      setError("Please fill out all fields.");
-      return;
-    }
-
-    setError("");
-    console.log("Login successful:", { email, password });
+    console.log({ email, password });
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gradient-to-b from-teal-800 via-teal-300 to-teal-50 ">
-      {/* Right Section - Form */}
-      <div className=" p-8 w-1/4  bg-white dark:bg-black rounded-xl shadow-lg">
-        <h2 className="text-3xl font-bold text-center text-gray-800 dark:text-white mb-6">
+    <div className="flex items-center justify-center min-h-screen bg-gray-100 dark:bg-gray-900">
+      <motion.div
+        className="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-lg w-full max-w-md"
+        initial={{ opacity: 0, scale: 0.9 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.5 }}
+      >
+        <h2 className="text-3xl font-bold mb-6 text-center text-gray-800 dark:text-gray-200">
           Login
         </h2>
 
-        {error && (
-          <div className="bg-red-100 text-red-700 p-3 rounded-md mb-4">
-            {error}
-          </div>
-        )}
-
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form onSubmit={handleSubmit} className="space-y-6">
+          {/* Email Field */}
           <div>
             <label
               htmlFor="email"
-              className="block text-gray-600 dark:text-white mb-1"
+              className="block text-gray-700 dark:text-gray-300 mb-2"
             >
-              Email
+              Email Address
             </label>
             <input
               type="email"
@@ -45,45 +37,51 @@ const Login = () => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               className="w-full p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
-              placeholder="Enter your email"
-            />
+             placeholder="Enter your email"
+           />
+            
           </div>
 
+          {/* Password Field */}
           <div>
             <label
               htmlFor="password"
-              className="block text-gray-600 mb-1 dark:text-white"
+              className="block text-gray-700 dark:text-gray-300 mb-2"
             >
               Password
             </label>
             <input
-              type="password"
-              id="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="w-full p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
-              placeholder="Enter your password"
-            />
+               type="password"
+               id="password"
+               value={password}
+               onChange={(e) => setPassword(e.target.value)}
+               className="w-full p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+               placeholder="Enter your password"
+           />
           </div>
 
-          <button
+          {/* Submit Button */}
+          <motion.button
             type="submit"
-            className="w-full bg-green-500 text-white p-3 rounded-md hover:bg-green-600 transition duration-300"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="w-full bg-blue-500 text-white py-3 rounded-lg shadow-md hover:bg-blue-600 transition-transform"
           >
-            <a href="/" className="">
-              {" "}
-              Login
-            </a>
-          </button>
+          
+            Login
+         
+           
+          </motion.button>
         </form>
 
-        <p className="text-center text-gray-500 mt-4 dark:text-white">
+        {/* Footer */}
+        <p className="text-center mt-6 text-gray-500 dark:text-gray-400">
           Don't have an account?{" "}
-          <a href="/sign-up" className="text-blue-500 hover:underline">
+          <a href="/sign-up" className="text-red-500 hover:underline">
             Sign Up
           </a>
         </p>
-      </div>
+      </motion.div>
     </div>
   );
 };

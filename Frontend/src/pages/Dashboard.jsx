@@ -29,7 +29,7 @@ const quickLinks = [
 
 const Dashboard = () => {
   return (
-    <section className="min-h-screen bg-gray-100 dark:bg-gray-900 p-8">
+    <section className="min-h-screen bg-gray-100 dark:bg-gray-900 p-8  mt-16">
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-8">
         
         {/* Course Progress */}

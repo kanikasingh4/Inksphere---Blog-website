@@ -34,7 +34,7 @@ const CourseCatalog = () => {
         {courses.map((course) => (
           <motion.div
             key={course.id}
-            className="p-6 bg-gray-100 dark:bg-gray-950 rounded-lg shadow-md hover:shadow-lg transition duration-300"
+            className="p-6 bg-gray-100 dark:bg-gray-900 rounded-lg shadow-md hover:shadow-lg transition duration-300"
             whileHover={{ scale: 1.05 }}
           >
             <div className="p-6 ">

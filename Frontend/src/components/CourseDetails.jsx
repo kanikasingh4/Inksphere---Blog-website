@@ -48,7 +48,7 @@ const CourseDetails = () => {
      return <div className="p-8">Course not found.</div>;
    }
   return (
-    <div className="min-h-screen bg-gradient-to-t from-teal-800 via-teal-400 to-white   py-10 px-4 md:px-20">
+    <div className="min-h-screen bg-gradient-to-t from-teal-800 via-teal-400 to-white   py-10 px-4 md:px-20  mt-20" >
       <div className="max-w-4xl mx-auto bg-white dark:bg-gray-800 p-8 rounded-lg shadow-md">
         {/* Header Section */}
         <motion.h1

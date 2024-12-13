@@ -34,7 +34,7 @@ const blogPosts = [
 
 const Blog = () => {
   return (
-    <section className="min-h-screen bg-gray-100 dark:bg-gray-900 py-12 px-6 md:px-20">
+    <section className="min-h-screen bg-gray-100 dark:bg-gray-900 py-12 px-6 md:px-20  mt-16">
       <div className="max-w-6xl mx-auto">
         {/* Title */}
         <motion.h1

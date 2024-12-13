@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 const About = () => {
   return (
-    <section className="min-h-screen bg-gradient-to-t from-teal-100 via-teal-50 to-white text-gray-900 dark:text-gray-200 py-10 px-6 md:px-20 ">
+    <section className="min-h-screen bg-gradient-to-t from-teal-100 via-teal-50 to-white text-gray-900 dark:text-gray-200 py-10 px-6 md:px-20   mt-16">
       <div className="max-w-5xl mx-auto bg-white dark:bg-gray-800 p-8 rounded-lg shadow-md mt-20">
         {/* Title Section */}
         <motion.h1

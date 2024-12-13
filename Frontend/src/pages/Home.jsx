@@ -52,22 +52,7 @@ const Home= () => {
       </div>
       
     </div>
-    <div className="dark:bg-gray-800 dark:text-white bg-white text-black py-6">
-      <div className="container mx-auto px-4 text-center">
-        <div className="mb-4">
-          <a href="#" className=" mx-2">
-            Privacy Policy
-          </a>
-          <a href="#" className=" mx-2">
-            Terms of Service
-          </a>
-          <a href="#" className=" mx-2">
-            Contact
-          </a>
-        </div>
-        <p >&copy; 2024 InkSphere. All rights reserved.</p>
-      </div>
-    </div>
+    
     </div>
   );
 };

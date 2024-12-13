@@ -5,7 +5,7 @@ import CourseCatalog from "../components/CourseCatalog";
 
 export default function Course() {
   return (
-    <div className="min-h-screen bg-gray-100 dark:bg-gray-900">
+    <div className="min-h-screen bg-gray-100 dark:bg-gray-900 mt-16">
       {/* Header Section */}
       <header className="bg-teal-300 text-black dark:bg-teal-900 dark:text-white py-6">
         <div className="container mx-auto px-6">
