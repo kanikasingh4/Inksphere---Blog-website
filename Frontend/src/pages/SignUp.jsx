@@ -185,7 +185,7 @@ const SignUp = () => {
                 onChange={(e) => setName(e.target.value)}
                 required
                 placeholder="Enter your full name"
-                className="w-full p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+                className="w-full p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400  text-gray-800 dark:text-gray-200 bg-gray-50 dark:bg-gray-700"
                 
               />
            
@@ -204,7 +204,7 @@ const SignUp = () => {
                 onChange={(e) => setEmail(e.target.value)}
                 required
                 placeholder="Enter your email"
-                className="w-full p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+                className="w-full p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400  text-gray-800 dark:text-gray-200 bg-gray-50 dark:bg-gray-700"
               />
             
           </div>
@@ -222,7 +222,7 @@ const SignUp = () => {
                 onChange={(e) => setPassword(e.target.value)}
                 required
                 placeholder="Enter your password"
-                className="w-full p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+                className="w-full p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400  text-gray-800 dark:text-gray-200 bg-gray-50 dark:bg-gray-700"
               />
           
           </div>
